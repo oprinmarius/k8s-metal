@@ -28,6 +28,13 @@ argocd:
             - argo-cd.kub-poc.local
           secretName: argo-cd-server-tls
         https: true
+    configs:
+      params:
+        server.insecure: true
+      cm:
+        url: https://argo-cd.kub-poc.local
+      notifications:
+        argocdUrl: https://argo-cd.kub-poc.local
 gitea:
   name: gitea
   namespace: git
