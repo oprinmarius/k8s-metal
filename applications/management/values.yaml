@@ -1,0 +1,27 @@
+argocd:
+  name: argocd
+  namespace: argocd
+  version: 5.22.1
+  values:
+    server:
+      ingress:
+        enabled: true
+        ingressClassName: alb
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+        hosts:
+          - argocd.kub-poc.local
+        #tls:
+        #  - hosts:
+        #      - argocd.kub-poc.local
+    configs:
+      params:
+        server.insecure: false
+      cm:
+        url: https://argocd.kub-poc.local
+      notifications:
+        argocdUrl: https://argocd.kub-poc.local
+
+      
