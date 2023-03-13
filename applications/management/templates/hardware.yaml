@@ -10,5 +10,5 @@ spec:
   project: default
   source:
     path: config/hardware
-    repoURL: https://git.kub-poc.local:gitea_admin/k8s-metal.git
+    repoURL: https://git.kub-poc.local/gitea_admin/k8s-metal.git
     targetRevision: HEAD
