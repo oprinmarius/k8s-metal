@@ -55,11 +55,26 @@ gitea:
         nginx.ingress.kubernetes.io/ssl-passthrough: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
       hosts:
-        - host: git.kub-poc.local
-          paths:
-            - path: /
-              pathType: Prefix
+        - git.kub-poc.local
       tls:
         - hosts:
             - git.kub-poc.local
           secretName: git-tls
+sentry:
+  name: sentry
+  namespace: monitoring
+  version: 17.9.1
+  values:
+    ingress:
+      enabled: true
+      regexPathStyle: nginx
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/use-regex: "true"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      tls:
+      - secretName: sentry-tls
+        hosts:
+          - sentry.kub-poc.local
