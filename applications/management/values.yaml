@@ -1,4 +1,4 @@
-argo-cd:
+argocd:
   name: argo-cd
   namespace: argo-cd
   version: 5.22.1
