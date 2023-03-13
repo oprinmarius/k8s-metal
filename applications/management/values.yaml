@@ -78,7 +78,7 @@ sentry:
       - secretName: sentry-tls
         hosts:
           - sentry.kub-poc.local
-ingress-nginx:
+ingress:
   name: ingress-nginx
   namespace: ingress-nginx
   version: 4.5.2
