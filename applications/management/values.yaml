@@ -12,6 +12,13 @@ argo-cd:
         - argo-cd.kub-poc.local
         - grafana.kub-poc.local
         - prometheus.kub-poc.local
+    configs:
+      params:
+        server.insecure: false
+      cm:
+        url: https://argo-cd.kub-poc.local
+      notifications:
+        argocdUrl: https://argo-cd.kub-poc.local
     server:
       ingress:
         enabled: true
