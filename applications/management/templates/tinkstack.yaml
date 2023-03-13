@@ -13,7 +13,7 @@ spec:
   project: default
   source:
     chart: stack
-    repoURL: ghcr.io/tinkerbell/charts/stack
+    repoURL: ghcr.io/tinkerbell/charts
     targetRevision: {{ .Values.tinkstack.version }}
     helm:
       valueFiles:
