@@ -29,26 +29,30 @@ argocd:
           secretName: argo-cd-server-tls
         https: true
 gitea:
-  gitea:
-    config:
-      server:
-        SSH_DOMAIN: git.kub-poc.local
-        ROOT_URL: https://git.kub-poc.local
-        DOMAIN: git.kub-poc.local
-  ingress:
-    enabled: true
-    annotations:
-      cert-manager.io/issuer: "kub-poc-issuer"
-      kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    hosts:
-      - host: git.kub-poc.local
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - git.kub-poc.local
-        secretName: git-tls
+  name: gitea
+  namespace: git
+  version: 7.0.4
+  values:
+    gitea:
+      config:
+        server:
+          SSH_DOMAIN: git.kub-poc.local
+          ROOT_URL: https://git.kub-poc.local
+          DOMAIN: git.kub-poc.local
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/issuer: "kub-poc-issuer"
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      hosts:
+        - host: git.kub-poc.local
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - git.kub-poc.local
+          secretName: git-tls
