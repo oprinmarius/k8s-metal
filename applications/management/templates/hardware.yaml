@@ -1,0 +1,14 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hardware
+spec:
+  destination:
+    namespace: tink-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: config/hardware
+    repoURL: git@git.kub-poc.local:gitea_admin/k8s-metal.git
+    targetRevision: HEAD
