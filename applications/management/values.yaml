@@ -1,7 +1,7 @@
 argocd:
   name: argo-cd
   namespace: argo-cd
-  version: 5.22.1
+  version: 5.26.0
   values:
     global:
       hostAliases:
@@ -30,7 +30,7 @@ argocd:
         https: true
     configs:
       params:
-        server.insecure: false
+        server.insecure: "false"
       cm:
         url: https://argo-cd.kub-poc.local
       notifications:
