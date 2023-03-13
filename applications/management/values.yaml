@@ -86,7 +86,7 @@ sentry:
 prometheus:
   name: prometheus
   namespace: monitoring
-  version: 45.5.0
+  version: 45.7.1
 ingress:
   name: ingress-nginx
   namespace: ingress-nginx
