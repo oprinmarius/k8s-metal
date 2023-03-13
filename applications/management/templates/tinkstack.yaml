@@ -13,7 +13,6 @@ spec:
   project: default
   source:
     chart: stack
-    enableOCI: true
     repoURL: ghcr.io/tinkerbell/charts/stack
     targetRevision: {{ .Values.tinkstack.version }}
     helm:
