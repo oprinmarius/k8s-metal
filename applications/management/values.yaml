@@ -80,6 +80,11 @@ sentry:
       - secretName: sentry-tls
         hosts:
           - sentry.kub-poc.local
+prometheus:
+  name: prometheus
+  namespace: monitoring
+  version: 45.5.0
+  values: {}
 ingress:
   name: ingress-nginx
   namespace: ingress-nginx
