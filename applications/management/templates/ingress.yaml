@@ -19,4 +19,4 @@ spec:
       valueFiles:
         - values.yaml
       values: |-
-        {{- toYaml .Values.ingress-nginx.values | nindent 8 }}
+        {{- toYaml .Values.ingress.values | nindent 8 }}
