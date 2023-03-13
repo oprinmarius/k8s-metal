@@ -104,7 +104,7 @@ ingress:
         ssl-passthrough: "true"
 tinkstack:
   name: tink-stack
-  namespace: tink-stack
+  namespace: tink-system
   version: 0.2.0
   values:
     boots:
