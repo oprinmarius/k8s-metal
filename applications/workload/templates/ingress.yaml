@@ -8,6 +8,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
   destination:
+    name: "kub-poc-admin@kub-poc"
     namespace: {{ .Values.ingress.namespace }}
     server: https://10.100.3.140:6443
   project: default
