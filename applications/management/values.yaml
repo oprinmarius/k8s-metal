@@ -8,11 +8,11 @@ argocd:
       hostAliases:
       - ip: 10.100.3.133
         hostnames:
-        - git.kub-poc.local
-        - sentry.kub-poc.local
-        - argo-cd.kub-poc.local
-        - grafana.kub-poc.local
-        - prometheus.kub-poc.local
+        - git.mgmt.kub-poc.local
+        - sentry.mgmt.kub-poc.local
+        - argo-cd.mgmt.kub-poc.local
+        - grafana.mgmt.kub-poc.local
+        - prometheus.mgmt.kub-poc.local
     server:
       ingress:
         enabled: true
@@ -23,19 +23,19 @@ argocd:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
           cert-manager.io/issuer: "kub-poc-issuer"
         hosts:
-          - argo-cd.kub-poc.local
+          - argo-cd.mgmt.kub-poc.local
         tls:
         - hosts:
-            - argo-cd.kub-poc.local
+            - argo-cd.mgmt.kub-poc.local
           secretName: argo-cd-server-tls
         https: true
     configs:
       params:
         server.insecure: "false"
       cm:
-        url: https://argo-cd.kub-poc.local
+        url: https://argo-cd.mgmt.kub-poc.local
       notifications:
-        argocdUrl: https://argo-cd.kub-poc.local
+        argocdUrl: https://argo-cd.mgmt.kub-poc.local
 
 # Gitea helm chart (git server/ ssh outbound is not working to use public github.com)
 gitea:
@@ -46,9 +46,9 @@ gitea:
     gitea:
       config:
         server:
-          SSH_DOMAIN: git.kub-poc.local
-          ROOT_URL: https://git.kub-poc.local
-          DOMAIN: git.kub-poc.local
+          SSH_DOMAIN: git.mgmt.kub-poc.local
+          ROOT_URL: https://git.mgmt.kub-poc.local
+          DOMAIN: git.mgmt.kub-poc.local
     ingress:
       enabled: true
       annotations:
@@ -58,13 +58,13 @@ gitea:
         nginx.ingress.kubernetes.io/ssl-passthrough: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
       hosts:
-        - host: git.kub-poc.local
+        - host: git.mgmt.kub-poc.local
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - git.kub-poc.local
+            - git.mgmt.kub-poc.local
           secretName: git-tls
 
 # Sentry helm chart
@@ -82,12 +82,11 @@ sentry:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/ssl-passthrough: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-      hosts:
-        - sentry.kub-poc.local
+      hostname: sentry.mgmt.kub-poc.local
       tls:
       - secretName: sentry-tls
         hosts:
-          - sentry.kub-poc.local
+          - sentry.mgmt.kub-poc.local
 
 # Prom-operator chart
 prometheus:
@@ -104,11 +103,11 @@ prometheus:
           nginx.ingress.kubernetes.io/ssl-passthrough: "false"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         hosts:
-          - grafana.kub-poc.local
+          - grafana.mgmt.kub-poc.local
         tls:
         - secretName: grafana-tls
           hosts:
-            - grafana.kub-poc.local
+            - grafana.mgmt.kub-poc.local
     prometheus:
       ingress:
         enabled: true
@@ -118,11 +117,11 @@ prometheus:
           nginx.ingress.kubernetes.io/ssl-passthrough: "false"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         hosts:
-          - prometheus.kub-poc.local
+          - prometheus.mgmt.kub-poc.local
         tls:
         - secretName: prometheus-tls
           hosts:
-            - prometheus.kub-poc.local
+            - prometheus.mgmt.kub-poc.local
 
 # ingress-nginx chart
 ingress:
