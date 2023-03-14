@@ -9,7 +9,7 @@ spec:
       - CreateNamespace=true
   destination:
     namespace: {{ .Values.ingress.namespace }}
-    server: https://kubernetes.default.svc
+    server: https://10.100.3.140:6443
   project: default
   source:
     chart: ingress-nginx
