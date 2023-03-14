@@ -2,21 +2,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.operator.name }}
+  name: {{ .Values.cluster.name }}
 spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
   destination:
-    namespace: {{ .Values.operator.namespace }}
+    namespace: {{ .Values.cluster.namespace }}
     server: https://10.100.3.140:6443
   project: default
   source:
     chart: rook-ceph-cluster
     repoURL: https://charts.rook.io/release
-    targetRevision: {{ .Values.operator.version }}
+    targetRevision: {{ .Values.cluster.version }}
     helm:
       valueFiles:
         - values.yaml
       values: |-
-        {{- toYaml .Values.operator.values | nindent 8 }}
+        {{- toYaml .Values.cluster.values | nindent 8 }}
