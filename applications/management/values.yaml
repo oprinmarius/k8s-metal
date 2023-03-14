@@ -1,3 +1,4 @@
+# Argo CD helm chart
 argocd:
   name: argo-cd
   namespace: argo-cd
@@ -35,6 +36,8 @@ argocd:
         url: https://argo-cd.kub-poc.local
       notifications:
         argocdUrl: https://argo-cd.kub-poc.local
+
+# Gitea helm chart (git server/ ssh outbound is not working to use public github.com)
 gitea:
   name: gitea
   namespace: git
@@ -63,6 +66,8 @@ gitea:
         - hosts:
             - git.kub-poc.local
           secretName: git-tls
+
+# Sentry helm chart
 sentry:
   name: sentry
   namespace: monitoring
@@ -83,10 +88,28 @@ sentry:
       - secretName: sentry-tls
         hosts:
           - sentry.kub-poc.local
+
+# Prom-operator chart
 prometheus:
   name: prometheus
   namespace: monitoring
   version: 45.7.1
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      hosts:
+        - prometheus.kub-poc.local
+      tls:
+      - secretName: prometheus-tls
+        hosts:
+          - prometheus.kub-poc.local
+
+# ingress-nginx chart
 ingress:
   name: ingress-nginx
   namespace: ingress-nginx
@@ -102,6 +125,8 @@ ingress:
         ssl-redirect: "true"
         force-ssl-redirect: "true"
         ssl-passthrough: "true"
+
+# Tinkerbell stack helm chart
 tinkstack:
   name: tink-stack
   namespace: tink-system
