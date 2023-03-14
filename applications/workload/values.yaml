@@ -1,4 +1,8 @@
-operator:  
+operator:
+  name: rook-ceph-operator
+  namespace: ceph
+  version: 1.11.1
+  values:
   # Default values for rook-ceph-operator
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
