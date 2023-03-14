@@ -631,7 +631,7 @@ cluster:
     # Declare variables to be passed into your templates.
 
     # -- Namespace of the main rook operator
-    operatorNamespace: rook-ceph
+    operatorNamespace: ceph
 
     # -- The metadata.name of the CephCluster CR
     # @default -- The same as the namespace
