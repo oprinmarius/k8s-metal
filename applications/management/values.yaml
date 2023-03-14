@@ -95,6 +95,20 @@ prometheus:
   namespace: monitoring
   version: 45.7.1
   values:
+    grafana:
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        hosts:
+          - grafana.kub-poc.local
+        tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana.kub-poc.local
     prometheus:
       ingress:
         enabled: true
