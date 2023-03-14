@@ -95,19 +95,20 @@ prometheus:
   namespace: monitoring
   version: 45.7.1
   values:
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-        nginx.ingress.kubernetes.io/ssl-passthrough: "false"
-        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-      hosts:
-        - prometheus.kub-poc.local
-      tls:
-      - secretName: prometheus-tls
+    prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
         hosts:
           - prometheus.kub-poc.local
+        tls:
+        - secretName: prometheus-tls
+          hosts:
+            - prometheus.kub-poc.local
 
 # ingress-nginx chart
 ingress:
