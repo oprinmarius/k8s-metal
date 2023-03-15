@@ -171,7 +171,7 @@ tinkstack:
       - name: BOOTS_LOG_LEVEL
         value: debug
       - name: BOOTS_EXTRA_KERNEL_ARGS
-        value: tink_worker_image=quay.io/tinkerbell/tink-worker:v0.8.0
+        value: tink_worker_image=tinkerbell.azurecr.io/tink-worker:v0.8.0
       hostNetwork: true
       image: quay.io/tinkerbell/boots:v0.8.0
       trustedProxies: 10.0.0.0/8
