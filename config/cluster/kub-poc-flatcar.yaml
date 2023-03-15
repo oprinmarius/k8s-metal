@@ -56,13 +56,13 @@ spec:
                 timeout: 600
                 environment:
                   IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424:v1.26.1.gz
-                  DEST_DISK: /dev/vda
+                  DEST_DISK: /dev/sda
                   COMPRESSED: true
               - name: "change-kernel-configuration"
                 image: tinkerbell.azurecr.io/writefile:v1.0.0
                 timeout: 90
                 environment:
-                  DEST_DISK: /dev/vda6
+                  DEST_DISK: /dev/sda6
                   FS_TYPE: btrfs
                   DEST_PATH: /grub.cfg
                   UID: 0
@@ -168,13 +168,13 @@ spec:
                 timeout: 600
                 environment:
                   IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424:v1.26.1.gz
-                  DEST_DISK: /dev/vda
+                  DEST_DISK: /dev/sda
                   COMPRESSED: true
               - name: "change-kernel-configuration"
                 image: tinkerbell.azurecr.io/writefile:v1.0.0
                 timeout: 90
                 environment:
-                  DEST_DISK: /dev/vda6
+                  DEST_DISK: /dev/sda6
                   FS_TYPE: btrfs
                   DEST_PATH: /grub.cfg
                   UID: 0
