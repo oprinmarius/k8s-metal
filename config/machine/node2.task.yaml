@@ -1,7 +1,7 @@
 apiVersion: bmc.tinkerbell.org/v1alpha1
 kind: Job
 metadata:
-  name: job_power_reset_node2
+  name: job-power-reset-node2
   namespace: tink-system
 spec:
   machineRef:
