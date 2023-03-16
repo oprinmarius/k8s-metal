@@ -1,0 +1,14 @@
+apiVersion: projectcalico.org/v3
+kind: BGPConfiguration
+metadata:
+  name: default
+spec:
+  logSeverityScreen: Info
+  nodeToNodeMeshEnabled: true
+  asNumber: 65200 # Nodes AS
+  serviceClusterIPs:
+    - cidr: 192.168.0.0/16 # Cluster IPs
+  serviceExternalIPs:
+    - cidr: 10.100.3.141-10.100.3.150 # LoadBalancer IPs
+  listenPort: 178
+  bindMode: NodeIP
