@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: machine
+  name: bird
 spec:
   destination:
     namespace: argo-cd
