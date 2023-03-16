@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    component: bird
+    tier: control-plane
+  name: bird
+  namespace: kube-system
+spec:
+  containers:
+    - image: calico/bird:1.6.8
+      imagePullPolicy: IfNotPresent
+      name: bird
+      resources: {}
+      volumeMounts:
+        - mountPath: /etc/bird/bird.conf
+          name: bird-config
+  hostNetwork: true
+  priorityClassName: system-cluster-critical
+  volumes:
+    - configMap:
+        defaultMode: 420
+        name: bird-config
+      name: bird-config
