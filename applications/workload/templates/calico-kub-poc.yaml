@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: calico-kub-poc
 spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - Replace=true
   destination:
     namespace: tigera-operator
     server: https://10.100.3.140:6443
