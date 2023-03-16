@@ -1,0 +1,14 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calico-kub-poc
+spec:
+  destination:
+    namespace: tigera-operator
+    server: https://10.100.3.140:6443
+  project: default
+  source:
+    path: config/calico
+    repoURL: https://git.mgmt.kub-poc.local/gitea_admin/k8s-metal.git
+    targetRevision: HEAD
