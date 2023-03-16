@@ -23,4 +23,7 @@ spec:
     - configMap:
         defaultMode: 420
         name: bird-config
+        items:
+          - key: bird.conf
+            path: bird.conf
       name: bird-config
