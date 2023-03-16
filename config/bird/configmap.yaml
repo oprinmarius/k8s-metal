@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: bird
-  name: bird-config
+  name: kube-system
 data:
   config: |
         # This is a minimal configuration file, which allows the bird daemon to start
