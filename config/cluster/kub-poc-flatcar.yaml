@@ -197,6 +197,8 @@ spec:
   template:
     spec:
       format: ignition
+      preKubeadmCommands:
+      - (systemctl stop containerd || true) && systemctl start containerd
       joinConfiguration:
         nodeRegistration:
           kubeletExtraArgs:
