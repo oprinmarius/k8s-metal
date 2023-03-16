@@ -21,7 +21,6 @@ spec:
   priorityClassName: system-cluster-critical
   volumes:
     - configMap:
-        defaultMode: 420
         name: bird-config
         items:
           - key: bird.conf
