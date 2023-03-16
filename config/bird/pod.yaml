@@ -7,7 +7,7 @@ metadata:
     component: bird
     tier: control-plane
   name: bird
-  namespace: kube-system
+  namespace: bird
 spec:
   containers:
     - image: calico/bird:1.6.8
