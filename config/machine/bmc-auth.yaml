@@ -4,6 +4,6 @@ metadata:
   name: bm-auth
   namespace: tink-system
 data:
-  username: VVNFUklECg==
-  password: RUJzPWlLaTI5IUQubngK
+  username: VVNFUklE
+  password: RUJzPWlLaTI5IUQubng=
 type: kubernetes.io/basic-auth

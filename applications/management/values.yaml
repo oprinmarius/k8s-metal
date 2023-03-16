@@ -179,7 +179,7 @@ tinkstack:
       image: quay.io/tinkerbell/hegel:v0.10.1
       trustedProxies: 10.0.0.0/8
     rufio:
-      image: tinkerbell.azurecr.io/rufio:v0.1.0
+      image: tinkerbell.azurecr.io/rufio:v0.3.1
     stack:
       enabled: true
       hook:
