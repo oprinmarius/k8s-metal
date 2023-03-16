@@ -10,7 +10,7 @@ metadata:
   namespace: bird
 spec:
   containers:
-    - image: calico/bird:0.3.3
+    - image: calico/bird:v0.3.3-200-g245602b0-ppc64le
       imagePullPolicy: IfNotPresent
       name: bird
       resources: {}
