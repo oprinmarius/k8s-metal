@@ -4,8 +4,11 @@ kind: Application
 metadata:
   name: bird
 spec:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
   destination:
-    namespace: argo-cd
+    namespace: bird
     server: https://kubernetes.default.svc
   project: default
   source:
