@@ -15,8 +15,10 @@ spec:
       name: bird
       resources: {}
       volumeMounts:
-        - mountPath: /tmp
+        - mountPath: /etc/bird
           name: bird-config
+        - mountPath: /tmp
+          name: bird-config-map
   hostNetwork: true
   priorityClassName: system-cluster-critical
   volumes:
