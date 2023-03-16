@@ -20,6 +20,10 @@ spec:
   hostNetwork: true
   priorityClassName: system-cluster-critical
   volumes:
+    - hostPath:
+        path: /etc/bird
+        type: Directory
+      name: bird-config
     - configMap:
         name: bird-config
         items:
