@@ -10,12 +10,12 @@ metadata:
   namespace: bird
 spec:
   containers:
-    - image: pierky/bird:1.6.6
+    - image: pierky/bird:2.0.8
       imagePullPolicy: IfNotPresent
       name: bird
       resources: {}
       volumeMounts:
-        - mountPath: /etc/bird
+        - mountPath: /etc/bird/bird.conf
           name: bird-config
   hostNetwork: true
   priorityClassName: system-cluster-critical

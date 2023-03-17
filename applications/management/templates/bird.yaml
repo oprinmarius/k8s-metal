@@ -1,0 +1,14 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bird
+spec:
+  destination:
+    namespace: bird
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: config/bird
+    repoURL: https://git.mgmt.kub-poc.local/gitea_admin/k8s-metal.git
+    targetRevision: HEAD
