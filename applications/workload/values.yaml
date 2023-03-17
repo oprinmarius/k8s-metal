@@ -5,6 +5,14 @@ wordpress:
   values:
     persistence:
       storageClass: "ceph-filesystem"
+cilium:
+  name: cilium-kub-poc
+  namespace: kube-system
+  version: 1.13.0
+  values:
+    bgpControlPlane:
+      # -- Enables the BGP control plane.
+      enabled: true
 ingress:
   name: ingress-nginx
   namespace: ingress-nginx
