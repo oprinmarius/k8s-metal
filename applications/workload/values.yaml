@@ -8,7 +8,7 @@ wordpress:
 cilium:
   name: cilium-kub-poc
   namespace: kube-system
-  version: 1.13.0
+  version: 1.13.1
   values:
     bgpControlPlane:
       # -- Enables the BGP control plane.
