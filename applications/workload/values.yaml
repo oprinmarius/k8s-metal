@@ -13,6 +13,9 @@ cilium:
     bgpControlPlane:
       # -- Enables the BGP control plane.
       enabled: true
+    ipam:
+      operator:
+        clusterPoolIPv4PodCIDR: "172.26.0.0/16"
 ingress:
   name: ingress-nginx
   namespace: ingress-nginx
