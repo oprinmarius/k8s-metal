@@ -28,3 +28,5 @@ spec:
   externalTrafficPolicy: Cluster
   allocateLoadBalancerNodePorts: true
   internalTrafficPolicy: Cluster
+  loadBalancerIP: 10.100.3.145
+  
