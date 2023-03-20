@@ -33,7 +33,7 @@ ingress:
         ssl-passthrough: "true"
 operator:
   name: rook-ceph-operator
-  namespace: ceph
+  namespace: rook-ceph
   version: 1.11.1
   values:
     # Default values for rook-ceph-operator
@@ -649,7 +649,7 @@ cluster:
     # Declare variables to be passed into your templates.
 
     # -- Namespace of the main rook operator
-    operatorNamespace: ceph
+    operatorNamespace: rook-ceph
 
     # -- The metadata.name of the CephCluster CR
     # @default -- The same as the namespace
