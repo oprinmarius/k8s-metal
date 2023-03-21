@@ -4,5 +4,5 @@ metadata:
   name: lb-ippool
 spec:
   cidrs:
-    - cidr: 10.100.4.145/29
+    - cidr: 10.100.3.145/29
   disabled: false
