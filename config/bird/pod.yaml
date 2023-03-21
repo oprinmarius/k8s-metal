@@ -19,6 +19,8 @@ spec:
           name: bird-config
   hostNetwork: true
   priorityClassName: system-cluster-critical
+  securityContext:
+       privileged: true
   volumes:
     - configMap:
         name: bird-config
