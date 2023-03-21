@@ -17,10 +17,10 @@ spec:
       volumeMounts:
         - mountPath: /etc/bird
           name: bird-config
+      securityContext:
+       privileged: true
   hostNetwork: true
   priorityClassName: system-cluster-critical
-  securityContext:
-       privileged: true
   volumes:
     - configMap:
         name: bird-config
