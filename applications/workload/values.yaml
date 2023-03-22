@@ -6,8 +6,9 @@ wordpress:
     persistence:
       storageClass: "rook-ceph-block"
     mariadb:
-      persistence:
-        storageClass: "rook-ceph-block"
+      primary:
+        persistence:
+          storageClass: "rook-ceph-block"
 cilium:
   name: cilium-kub-poc
   namespace: kube-system
