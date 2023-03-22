@@ -1,7 +1,0 @@
-apiVersion: projectcalico.org/v3
-kind: BGPPeer
-metadata:
-  name: mgmt-kub-poc-peer
-spec:
-  peerIP: 10.100.3.50 # BGPRouter IP
-  asNumber: 65000 # BGPRouter AS
