@@ -4,11 +4,11 @@ wordpress:
   version: 15.2.55
   values:
     persistence:
-      storageClass: "rook-ceph-block"
+      storageClass: "ceph-block"
     mariadb:
       primary:
         persistence:
-          storageClass: "rook-ceph-block"
+          storageClass: "ceph-block"
 cilium:
   name: cilium-kub-poc
   namespace: kube-system
