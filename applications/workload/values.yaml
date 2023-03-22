@@ -663,10 +663,9 @@ cluster:
     kubeVersion:
 
     # -- Cluster ceph.conf override
-    configOverride:
-     configOverride: |
-        [global]
-        mon_osd_crush_smoke_test = false
+    configOverride: |
+      [global]
+      mon_osd_crush_smoke_test = false
 
     # Installs a debugging toolbox deployment
     toolbox:
