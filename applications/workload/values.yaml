@@ -117,7 +117,7 @@ operator:
       # -- Enable host networking for CSI CephFS and RBD nodeplugins. This may be necessary
       # in some network configurations where the SDN does not provide access to an external cluster or
       # there is significant drop in read/write performance
-      enableCSIHostNetwork: true
+      enableCSIHostNetwork: false
       # -- Enable Snapshotter in CephFS provisioner pod
       enableCephfsSnapshotter: true
       # -- Enable Snapshotter in NFS provisioner pod
@@ -571,7 +571,7 @@ operator:
         crushLocationLabels:
 
     # -- Enable discovery daemon
-    enableDiscoveryDaemon: false
+    enableDiscoveryDaemon: true
 
     # -- The timeout for ceph commands in seconds
     cephCommandsTimeoutSeconds: "15"
