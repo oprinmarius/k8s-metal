@@ -4,7 +4,7 @@ wordpress:
   version: 15.2.55
   values:
     persistence:
-      storageClass: "rook-ceph-block"
+      storageClass: "ceph-block"
     mariadb:
       primary:
         persistence:
@@ -1080,7 +1080,7 @@ cluster:
         spec:
           failureDomain: host
           replicated:
-            size: 3
+            size: 1
           # Enables collecting RBD per-image IO statistics by enabling dynamic OSD performance counters. Defaults to false.
           # For reference: https://docs.ceph.com/docs/master/mgr/prometheus/#rbd-io-statistics
           # enableRBDStats: true
