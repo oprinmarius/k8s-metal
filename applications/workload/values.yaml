@@ -4,11 +4,11 @@ wordpress:
   version: 15.2.55
   values:
     persistence:
-      storageClass: "rook-ceph-block"
+      storageClass: "ceph-block"
     mariadb:
       primary:
         persistence:
-          storageClass: "rook-ceph-block"
+          storageClass: "ceph-block"
 cilium:
   name: cilium-kub-poc
   namespace: kube-system
@@ -43,6 +43,8 @@ sentrykubwork:
   values:
     sentry:
       dsn: "https://d9878d55f0c0474d8cf8d18ac159f5e7@sentry.mgmt.kub-poc.local/3"
+    image:
+      repository: oprinmarius/sentry-kubernetes
 
 operator:
   name: rook-ceph-operator
