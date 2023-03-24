@@ -20,7 +20,7 @@ cilium:
     ipam:
       operator:
         clusterPoolIPv4PodCIDR: "172.26.0.0/16"
-prometheus:
+prometheuswork:
   name: prometheus-workload
   namespace: monitoring
   version: 45.7.1

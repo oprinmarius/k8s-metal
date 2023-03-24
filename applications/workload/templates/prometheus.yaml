@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.prometheuswork.name }}
+spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  destination:
+    namespace: {{ .Values.prometheuswork.namespace }}
+    server: https://10.100.3.140:6443
+  project: workload
+  source:
+    chart: kube-prometheus-stack
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: {{ .Values.prometheuswork.version }}
+    helm:
+      valueFiles:
+        - values.yaml
+      values: |-
+        {{- toYaml .Values.prometheuswork.values | nindent 8 }}
