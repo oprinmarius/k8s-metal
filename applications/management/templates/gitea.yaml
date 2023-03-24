@@ -20,3 +20,9 @@ spec:
         - values.yaml
       values: |-
         {{- toYaml .Values.gitea.values | nindent 8 }}
+  ignoreDifferences:
+    - kind: Secret
+      name: gitea-postgresql
+      namespace: {{ .Values.gitea.namespace }}
+      jsonPointers:
+        - /data
