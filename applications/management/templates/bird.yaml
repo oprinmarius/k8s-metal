@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: bird
 spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
   destination:
     namespace: bird
     server: https://kubernetes.default.svc

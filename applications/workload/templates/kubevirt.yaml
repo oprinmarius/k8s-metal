@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: kubevirt
 spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
   destination:
     namespace: kube-system
     server: https://10.100.3.140:6443

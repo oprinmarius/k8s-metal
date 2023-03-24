@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: testvm
 spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
   destination:
     namespace: default
     server: https://10.100.3.140:6443

@@ -4,6 +4,10 @@ kind: Application
 metadata:
   name: machine
 spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
   destination:
     namespace: tink-system
     server: https://kubernetes.default.svc
