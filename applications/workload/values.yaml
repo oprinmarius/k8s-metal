@@ -1,6 +1,6 @@
 wordpress:
   name: wordpress
-  namespace: rook-ceph
+  namespace: wordpress
   version: 15.2.55
   values:
     persistence:
