@@ -11,7 +11,7 @@ spec:
   destination:
     namespace: {{ .Values.gitea.namespace }}
     server: https://kubernetes.default.svc
-  project: default
+  project: management
   source:
     chart: gitea
     repoURL: https://dl.gitea.io/charts/
