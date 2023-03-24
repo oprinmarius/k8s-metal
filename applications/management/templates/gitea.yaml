@@ -4,10 +4,6 @@ kind: Application
 metadata:
   name: {{ .Values.gitea.name }}
 spec:
-  syncPolicy:
-    syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace=true
   destination:
     namespace: {{ .Values.gitea.namespace }}
     server: https://kubernetes.default.svc
