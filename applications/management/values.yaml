@@ -88,6 +88,15 @@ sentry:
         hosts:
           - sentry.mgmt.kub-poc.local
 
+# Sentry-kunernetes helm chart (sentry integration with kubernetes)
+sentrykubmgmt:
+  name: sentry-kubernetes
+  namespace: monitoring
+  version: 0.3.2
+  values:
+    sentry:
+      dsn: "https://8b71683fba094609b488c0671d620441@sentry.mgmt.kub-poc.local/2"
+
 # Prom-operator chart
 prometheus:
   name: prometheus
