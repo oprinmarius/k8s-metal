@@ -4,10 +4,6 @@ kind: Application
 metadata:
   name: {{ .Values.wordpress.name }}
 spec:
-  syncPolicy:
-    syncOptions:
-      - ServerSideApply=true
-      - CreateNamespace=true
   destination:
     namespace: {{ .Values.wordpress.namespace }}
     server: https://10.100.3.140:6443
