@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: {{ .Values.cilium.namespace }}
     server: https://10.100.3.140:6443
-  project: default
+  project: workload
   source:
     chart: cilium
     repoURL: https://helm.cilium.io/

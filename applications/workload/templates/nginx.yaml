@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: nginx
     server: https://10.100.3.140:6443
-  project: default
+  project: workload
   source:
     path: config/workload/nginx
     repoURL: https://git.mgmt.kub-poc.local/gitea_admin/k8s-metal.git

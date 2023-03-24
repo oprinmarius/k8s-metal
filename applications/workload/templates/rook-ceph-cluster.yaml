@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: {{ .Values.cluster.namespace }}
     server: https://10.100.3.140:6443
-  project: default
+  project: workload
   source:
     chart: rook-ceph-cluster
     repoURL: https://charts.rook.io/release
