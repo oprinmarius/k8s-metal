@@ -27,3 +27,5 @@ spec:
       jsonPointers:
         - /data/ca.crt
         - /data/ca.key
+        - /data/tls.crt
+        - /data/tls.key
