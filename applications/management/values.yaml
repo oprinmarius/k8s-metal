@@ -96,6 +96,8 @@ sentrykubmgmt:
   values:
     sentry:
       dsn: "https://8b71683fba094609b488c0671d620441@sentry.mgmt.kub-poc.local/2"
+  image:
+      repository: oprinmarius/sentry-kubernetes
 
 # Prom-operator chart
 prometheus:

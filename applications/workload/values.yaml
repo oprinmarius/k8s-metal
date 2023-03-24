@@ -20,21 +20,30 @@ cilium:
     ipam:
       operator:
         clusterPoolIPv4PodCIDR: "172.26.0.0/16"
-ingress:
-  name: ingress-nginx
-  namespace: ingress-nginx
-  version: 4.5.2
+prometheus:
+  name: prometheus-workload
+  namespace: monitoring
+  version: 45.7.1
   values:
-    controller:
-      service:
-        loadBalancerIP: 10.100.3.143
-      extraArgs:
-        enable-ssl-passthrough: "true"
-      config:
-        use-forwarded-headers: "true"
-        ssl-redirect: "true"
-        force-ssl-redirect: "true"
-        ssl-passthrough: "true"
+    grafana:
+      ingress:
+        enabled: true
+        hosts:
+          - grafana.work.kub-poc.local
+        tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana.work.kub-poc.local
+    prometheus:
+      ingress:
+        enabled: true
+        hosts:
+          - prometheus.work.kub-poc.local
+        tls:
+        - secretName: prometheus-tls
+          hosts:
+            - prometheus.work.kub-poc.local
+
 # Sentry-kunernetes helm chart (sentry integration with kubernetes)
 sentrykubwork:
   name: sentry-kubernetes-workload
