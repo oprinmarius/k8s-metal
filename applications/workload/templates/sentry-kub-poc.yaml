@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.sentrykubwork.name }}
+spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  destination:
+    namespace: {{ .Values.sentrykubwork.namespace }}
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: sentry-kubernetes
+    repoURL: https://sentry-kubernetes.github.io/charts
+    targetRevision: {{ .Values.sentrykubwork.version }}
+    helm:
+      valueFiles:
+        - values.yaml
+      values: |-
+        {{- toYaml .Values.sentrykubwork.values | nindent 8 }}

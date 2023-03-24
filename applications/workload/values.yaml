@@ -35,6 +35,15 @@ ingress:
         ssl-redirect: "true"
         force-ssl-redirect: "true"
         ssl-passthrough: "true"
+# Sentry-kunernetes helm chart (sentry integration with kubernetes)
+sentrykubwork:
+  name: sentry-kubernetes-workload
+  namespace: monitoring
+  version: 0.3.2
+  values:
+    sentry:
+      dsn: "https://d9878d55f0c0474d8cf8d18ac159f5e7@sentry.mgmt.kub-poc.local/3"
+
 operator:
   name: rook-ceph-operator
   namespace: rook-ceph
