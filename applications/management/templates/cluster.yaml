@@ -13,7 +13,7 @@ spec:
     repoURL: https://git.mgmt.kub-poc.local/gitea_admin/k8s-metal.git
     targetRevision: HEAD
   ignoreDifferences:
-  - group: infrastructure
+  - group: infrastructure.cluster.x-k8s.io
     kind: TinkerbellCluster
     jsonPointers:
     - /spec/imageLookupBaseRegistry
