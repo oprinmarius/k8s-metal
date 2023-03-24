@@ -21,3 +21,9 @@ spec:
         - values.yaml
       values: |-
         {{- toYaml .Values.cilium.values | nindent 8 }}
+  ignoreDifferences:
+    - kind: Secret
+      namespace: {{ .Values.cilium.namespace }}
+      jsonPointers:
+        - /data/ca.crt
+        - /data/ca.key
