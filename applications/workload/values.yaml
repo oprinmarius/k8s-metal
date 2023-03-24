@@ -665,6 +665,7 @@ cluster:
     # -- Cluster ceph.conf override
     configOverride: |
       [global]
+      osd_pool_default_size = 1
       mon_osd_crush_smoke_test = false
 
     # Installs a debugging toolbox deployment
@@ -991,6 +992,7 @@ cluster:
       storage: # cluster level storage configuration and selection
         useAllNodes: true
         useAllDevices: true
+        devicePathFilter: "/dev/disk/by-id/scsi-.*"
         # deviceFilter:
         # config:
         #   crushRoot: "custom-root" # specify a non-default root label for the CRUSH map
