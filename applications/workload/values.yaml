@@ -642,7 +642,7 @@ operator:
     monitoring:
       # -- Enable monitoring. Requires Prometheus to be pre-installed.
       # Enabling will also create RBAC rules to allow Operator to create ServiceMonitors
-      enabled: true
+      enabled: false
 cluster:
   name: rook-ceph-cluster
   namespace: rook-ceph
@@ -692,7 +692,7 @@ cluster:
     monitoring:
       # -- Enable Prometheus integration, will also create necessary RBAC rules to allow Operator to create ServiceMonitors.
       # Monitoring requires Prometheus to be pre-installed
-      enabled: true
+      enabled: false
       # -- Whether to create the Prometheus rules for Ceph alerts
       createPrometheusRules: false
       # -- The namespace in which to create the prometheus rules, if different from the rook cluster namespace.
@@ -774,7 +774,7 @@ cluster:
         # In that case, one mgr will be active and one in standby. When Ceph updates which
         # mgr is active, Rook will update the mgr services to match the active mgr.
         count: 2
-        allowMultiplePerNode: true
+        allowMultiplePerNode: false
         modules:
           # Several modules should not need to be included in this list. The "dashboard" and "monitoring" modules
           # are already enabled by other settings in the cluster CR.
@@ -993,6 +993,7 @@ cluster:
         useAllNodes: true
         useAllDevices: true
         devicePathFilter: "/dev/disk/by-id/scsi-.*"
+        onlyApplyOSDPlacement: false
         # deviceFilter:
         # config:
         #   crushRoot: "custom-root" # specify a non-default root label for the CRUSH map
