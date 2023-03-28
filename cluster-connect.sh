@@ -74,7 +74,7 @@ function create_log_analytics() {
         --workspace-name $workspaceName \
         --query customerId \
         --output tsv)
-
+    
     export logAnalyticsWorkspaceIdEnc=$(printf %s $logAnalyticsWorkspaceId | base64 -w0) # Needed for the next step
     logAnalyticsKey=$(az monitor log-analytics workspace get-shared-keys \
         --resource-group $groupName \
@@ -168,7 +168,7 @@ function create_kube_app_service() {
         --resource-group $groupName \
         --name $kubeEnvironmentName \
         --custom-location $customLocationId
-
+    
     appserviceId=$(az appservice kube show \
         --resource-group $groupName \
         --name $kubeEnvironmentName \
@@ -180,7 +180,7 @@ function create_kube_app_service() {
         --name $kubeEnvironmentName \
         --query defaultDomain \
         --output tsv)
-
+    
     az resource wait --ids $appserviceId \
         --custom "properties.provisioningState=='Succeeded'" \
         --api-version "2022-09-01"
@@ -201,10 +201,11 @@ function deploy_test_app() {
     az webapp config appsettings set \
          --resource-group $groupName --name $appName \
          --settings SCM_DO_BUILD_DURING_DEPLOYMENT=true 1>/dev/null
-    git clone https://github.com/Azure-Samples/nodejs-docs-hello-world /tmp/nodejs-docs-hello-world 1>/dev/null --quiet
-    pushd /tmp/nodejs-docs-hello-world 1>/dev/null
-      zip -r package.zip . 2>/dev/null 1>/dev/nul
-      az webapp deployment source config-zip --resource-group $groupName --name $appName --src package.zip 1>/dev/null
+    rm -rf /tmp/nodejs-docs-hello-world || true
+    git clone https://github.com/Azure-Samples/nodejs-docs-hello-world /tmp/nodejs-docs-hello-world --quiet
+    pushd /tmp/nodejs-docs-hello-world
+      zip -r package.zip . 1>/dev/null
+      az webapp deployment source config-zip --resource-group $groupName --name $appName --src package.zip || true
       rm -rf /tmp/nodejs-docs-hello-world
     popd
 
@@ -226,6 +227,35 @@ function deploy_test_container() {
     log_msg "Application ${appName} deployed at https://${appName}.${appserviceDomain}"
 }
 
+function deploy_test_container_aspnet() {
+    log_msg "Application from mcr.microsoft.com/dotnet/samples:aspnetapp container create..."
+    az webapp show \
+        --resource-group $groupName \
+        --name $appNameContainer 1>/dev/null 2>/dev/null \
+    ||  az webapp create \
+        --resource-group $groupName \
+        --name $appNameContainer \
+        --custom-location $customLocationId \
+        --deployment-container-image-name mcr.microsoft.com/dotnet/samples:aspnetapp
+
+    log_msg "Application ${appNameContainer} deployed at https://${appNameContainer}.${appserviceDomain}"
+}
+
+function deploy_test_container_mssql() {
+    log_msg "Application from mcr.microsoft.com/mssql/server:2022-latest container create"
+    az webapp show \
+        --resource-group $groupName \
+        --name $appNameContainerMssql 1>/dev/null 2>/dev/null \
+    ||  az webapp create \
+        --resource-group $groupName \
+        --name $appNameContainerMssql \
+        --custom-location $customLocationId \
+        --deployment-container-image-name mcr.microsoft.com/mssql/server:2022-latest
+
+    log_msg "Application ${appNameContainer} deployed"
+}
+
+
 function prepare_variables() {
   export groupName="aks-metal"
   export clusterName="kub-poc"
@@ -237,6 +267,8 @@ function prepare_variables() {
   export kubeEnvironmentName="$clusterName-kube-environment"
   export customLocationName="$clusterName-customloc"
   export appName="$clusterName-nodejsapp1"
+  export appNameContainer="$clusterName-aspnetapp1"
+  export appNameContainerMssql="$clusterName-mssql2022v1"
 }
 
 function main() {
@@ -251,8 +283,9 @@ function main() {
   create_extension
   create_custom_location
   create_kube_app_service
-  deploy_test_app
-  deploy_test_container
+  deploy_test_container_aspnet
+  # deploy_test_container_mssql
+  # deploy_test_app
 }
 
 main
