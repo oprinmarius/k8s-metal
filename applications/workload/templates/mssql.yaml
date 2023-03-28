@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: MSSQL
+  name: mssql
 spec:
   syncPolicy:
     syncOptions:
