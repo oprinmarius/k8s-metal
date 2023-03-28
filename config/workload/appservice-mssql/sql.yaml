@@ -1,14 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-test
-  namespace: appservice-ns
+  annotations:
+    deployment.kubernetes.io/revision: "4"
+  name: kub-poc-mssql2022v2
+  namespace: default
 spec:
+  progressDeadlineSeconds: 600
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: kubpocmssql2019
-      k8se.microsoft.com/owner: app
+      app: kub-poc-mssql2022v2
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -17,14 +20,9 @@ spec:
   template:
     metadata:
       annotations:
-        appsettings-resourceVersion: "62249"
-        fluentbit.io/exclude: "false"
-        fluentbit.io/exclude_stdout-probe-shim: "true"
         kind: apps
       labels:
-        app: kubpocmssql2019
-        k8se.microsoft.com/environmentName: production
-        k8se.microsoft.com/owner: app
+        app: kub-poc-mssql2022v2
         min-replicas-billing: "1"
     spec:
       containers:
@@ -39,11 +37,6 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.name
-        - name: WEBSITE_SSH_PASSWORD
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: metadata.name
         - name: POD_IP
           valueFrom:
             fieldRef:
@@ -54,40 +47,16 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        - name: ASPNETCORE_URLS
-          value: http://+:1433
-        - name: PORT
-          value: "1433"
-        - name: WEBSITE_SITE_NAME
-          value: kubpocmssql2019
-        - name: APP_NAME
-          value: kubpocmssql2019
-        - name: WEBSITE_SLOT_NAME
-          value: production
-        - name: WEBSITE_HOSTNAME
-          value: kubpocmssql2019.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
-        - name: ENVIRONMENT_DNS_SUFFIX
-          value: kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
-        - name: SCM_WEBSITE_HOSTNAME
-          value: kubpocmssql2019.scm.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
-        - name: MSSQL_MEMORYLIMIT_MB
-          value: "2000"
-        envFrom:
-        - secretRef:
-            name: kubpocmssql2019-secrets
-        image: mcr.microsoft.com/mssql/server:2019-latest
+        - name: ACCEPT_EULA
+          value: "y"
+        - name: MSSQL_SA_PASSWORD
+          value: "P@ssw0rd1"
+        image: mcr.microsoft.com/mssql/server:2022-latest
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          tcpSocket:
-            port: 1433
-          timeoutSeconds: 1
-        name: http
+        name: mssql
         ports:
         - containerPort: 1433
-          name: http
+          name: mssql
           protocol: TCP
         readinessProbe:
           failureThreshold: 48
@@ -100,10 +69,10 @@ spec:
         resources:
           limits:
             cpu: "2"
-            memory: 3Gi
-          requests:
-            cpu: "2"
             memory: 2Gi
+          requests:
+            cpu: 50m
+            memory: 50Mi
         securityContext:
           allowPrivilegeEscalation: false
         terminationMessagePath: /dev/termination-log
@@ -112,8 +81,3 @@ spec:
       enableServiceLinks: false
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
-      serviceAccount: kubpocmssql2019
-      serviceAccountName: kubpocmssql2019
-      terminationGracePeriodSeconds: 30
-
