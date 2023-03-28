@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: avladutestmssql2019
+      app: kubpocmssql2019
       k8se.microsoft.com/owner: app
   strategy:
     rollingUpdate:
@@ -22,7 +22,7 @@ spec:
         fluentbit.io/exclude_stdout-probe-shim: "true"
         kind: apps
       labels:
-        app: avladutestmssql2019
+        app: kubpocmssql2019
         k8se.microsoft.com/environmentName: production
         k8se.microsoft.com/owner: app
         min-replicas-billing: "1"
@@ -59,22 +59,22 @@ spec:
         - name: PORT
           value: "1433"
         - name: WEBSITE_SITE_NAME
-          value: avladutestmssql2019
+          value: kubpocmssql2019
         - name: APP_NAME
-          value: avladutestmssql2019
+          value: kubpocmssql2019
         - name: WEBSITE_SLOT_NAME
           value: production
         - name: WEBSITE_HOSTNAME
-          value: avladutestmssql2019.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
+          value: kubpocmssql2019.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
         - name: ENVIRONMENT_DNS_SUFFIX
           value: kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
         - name: SCM_WEBSITE_HOSTNAME
-          value: avladutestmssql2019.scm.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
+          value: kubpocmssql2019.scm.kubpocavladu1-ku-3u325qa.westeurope.k4apps.io
         - name: MSSQL_MEMORYLIMIT_MB
           value: "2000"
         envFrom:
         - secretRef:
-            name: avladutestmssql2019-secrets
+            name: kubpocmssql2019-secrets
         image: mcr.microsoft.com/mssql/server:2019-latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -113,7 +113,7 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
-      serviceAccount: avladutestmssql2019
-      serviceAccountName: avladutestmssql2019
+      serviceAccount: kubpocmssql2019
+      serviceAccountName: kubpocmssql2019
       terminationGracePeriodSeconds: 30
 
