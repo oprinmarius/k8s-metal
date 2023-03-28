@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "4"
-  name: kub-poc-mssql2022v2
+  name: kub-poc-mssql2022v3
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: kub-poc-mssql2022v2
+      app: kub-poc-mssql2022v3
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -22,7 +22,7 @@ spec:
       annotations:
         kind: apps
       labels:
-        app: kub-poc-mssql2022v2
+        app: kub-poc-mssql2022v3
         min-replicas-billing: "1"
     spec:
       containers:
@@ -69,7 +69,7 @@ spec:
         resources:
           limits:
             cpu: "2"
-            memory: 2Gi
+            memory: 3Gi
           requests:
             cpu: 50m
             memory: 50Mi
