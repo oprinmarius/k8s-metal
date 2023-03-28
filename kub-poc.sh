@@ -50,8 +50,14 @@ do
 done
 rm -rf /var/lib/rook/*
 
- 
- 
-# Check hypervisor
+# Remove taints from master nodes
+kubectl patch node kub-poc-cp -p '{"spec":{"taints":[]}}'
+
+# Upload Windows 2022 Server image
+virtctl image-upload --image-path=win2k22-kubevirt-27032022.qcow2 \
+   --pvc-name=win2k22-qcow2 --access-mode=ReadWriteOnce --pvc-size=40G \
+   --uploadproxy-url=https://10.100.3.51:31001 --insecure --wait-secs=60
+
+ # Check hypervisor for Kubevirt VMs
 curl -k -L https://raw.githubusercontent.com/cloudbase/checkhypervisor/master/bin/checkhypervisor -o check 
 curl.exe -k -L https://raw.githubusercontent.com/cloudbase/checkhypervisor/master/bin/checkhypervisor.exe -o check.exe
