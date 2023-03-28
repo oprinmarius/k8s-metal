@@ -55,7 +55,7 @@ spec:
                 image: tinkerbell.azurecr.io/oci2disk:v1.0.0
                 timeout: 600
                 environment:
-                  IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424:v1.24.10.gz
+                  IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424av:v1.24.10.gz
                   DEST_DISK: /dev/sda
                   COMPRESSED: true
               - name: "change-kernel-configuration"
@@ -167,7 +167,7 @@ spec:
                 image: tinkerbell.azurecr.io/oci2disk:v1.0.0
                 timeout: 600
                 environment:
-                  IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424:v1.24.10.gz
+                  IMG_URL: tinkerbell.azurecr.io/cluster-api-provider-tinkerbell-flatcar/flatcar-stable337424av:v1.24.10.gz
                   DEST_DISK: /dev/sda
                   COMPRESSED: true
               - name: "change-kernel-configuration"
