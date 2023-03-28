@@ -50,8 +50,15 @@ do
 done
 rm -rf /var/lib/rook/*
 
+# Commands to run on the workload cluster
+export KUBECONFIG=~/.kube/kub-poc.kubeconfig
+
 # Remove taints from master nodes
 kubectl patch node kub-poc-cp -p '{"spec":{"taints":[]}}'
+
+# Check Ceph status
+kubectl -n rook-ceph get pods
+kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- ceph status
 
 # Upload Windows 2022 Server image
 virtctl image-upload --image-path=win2k22-kubevirt-27032022.qcow2 \
@@ -61,3 +68,6 @@ virtctl image-upload --image-path=win2k22-kubevirt-27032022.qcow2 \
  # Check hypervisor for Kubevirt VMs
 curl -k -L https://raw.githubusercontent.com/cloudbase/checkhypervisor/master/bin/checkhypervisor -o check 
 curl.exe -k -L https://raw.githubusercontent.com/cloudbase/checkhypervisor/master/bin/checkhypervisor.exe -o check.exe
+
+# Port-forward Wordpress
+kubectl port-forward svc/wordpress 8080:80 -n wordpress
